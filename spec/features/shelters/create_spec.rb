@@ -14,6 +14,7 @@ RSpec.describe "Create a new shelter" do
       fill_in :name, with: "The Friendly Fish Animal Shelter"
       fill_in :address, with: "456 Ocean Avenue"
       fill_in :city, with: "Boston"
+      fill_in :state, with: "MA"
       fill_in :zip, with:98738
 
       click_on 'Create Shelter'
@@ -22,4 +23,4 @@ RSpec.describe "Create a new shelter" do
       expect(page).to have_content("The Friendly Fish Animal Shelter")
     end
   end
-end 
+end
