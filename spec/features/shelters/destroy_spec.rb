@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe "When I Visit a Shelter Show page" do
   it "I can click a button to destroy a shelter then I am redirected to the shelter's index page" do
     cozy_kitten = Shelter.create(name: "Cozy Kitten Animal Shelter")

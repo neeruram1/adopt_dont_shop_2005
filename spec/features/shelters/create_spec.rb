@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe "Create a new shelter" do
   describe 'when I visit the shelter index page' do
     it "I can follow a link to create a new shelter" do

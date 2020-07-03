@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'Shelter Index page' do
   it 'When I visit /shelters I see the names of all shelters' do
     cozy_kitten = Shelter.create(name: "Cozy Kitten Animal Shelter")

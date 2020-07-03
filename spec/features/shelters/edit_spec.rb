@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe "Shelter edit" do
   it "When I visit a shelter show page I can edit info" do
     cozy_kitten = Shelter.create(name: "Cozy Kitten Animal Shelter")

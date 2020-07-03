@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe "Shelters show page" do
   it "shows all name, address, city, state, zip for a specific shelter" do
     cozy_kitten = Shelter.create(name: "Cozy Kitten Animal Shelter", address: "123 Maple Street", city: "Brooklyn", state: "NY", zip:12345)
