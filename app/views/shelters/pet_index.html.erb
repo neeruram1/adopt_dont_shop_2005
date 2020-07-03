@@ -1,5 +1,5 @@
 <h1><%= @shelter.name %> Adoptable Pets</h1>
-<ul id="pets-index">
+<ul id="shelter-pets-index">
   <% @pets.each do |pet| %>
     <%= image_tag(pet.image, method: :get) %>
     <h3>Name: <%= pet.name %></h3>

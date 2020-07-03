@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   patch '/shelters/:id', to: 'shelters#update'
 
   get '/pets', to: 'pets#index'
+  get '/pets/:id', to: 'pets#show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

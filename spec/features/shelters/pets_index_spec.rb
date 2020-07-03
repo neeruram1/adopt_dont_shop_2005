@@ -3,9 +3,9 @@ RSpec.describe "Shelter Pets index page" do
     cozy_kitten = Shelter.create(name: "Cozy Kitten Animal Shelter", address: "123 Maple Street", city: "Brooklyn", state: "NY", zip:12345)
     puppy_playground = Shelter.create(name: "The Puppy Playground", address: "125 Maple Street", city: "Brooklyn", state: "NY", zip:12345)
 
-    cat1 = Pet.create!(name: 'Fred', approx_age: 2, sex: "Male", image: "", shelter_id: cozy_kitten.id )
-    cat2 = Pet.create!(name: 'Sophie', approx_age: 6, sex: "Female", image: "", shelter_id: cozy_kitten.id )
-    dog1 = Pet.create!(name: 'Milo', approx_age: 3, sex: "Male", image: "", shelter_id: puppy_playground.id)
+    cat1 = Pet.create(name: 'Fred', approx_age: 2, sex: "Male", image: "", shelter_id: cozy_kitten.id )
+    cat2 = Pet.create(name: 'Sophie', approx_age: 6, sex: "Female", image: "", shelter_id: cozy_kitten.id )
+    dog1 = Pet.create(name: 'Milo', approx_age: 3, sex: "Male", image: "", shelter_id: puppy_playground.id)
 
     visit "/shelters/#{cozy_kitten.id}/pets"
 

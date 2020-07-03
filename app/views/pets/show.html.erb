@@ -1,0 +1,8 @@
+<h1><%= @pet.name %></h1>
+
+<%= image_tag(@pet.image, method: :get) %>
+<p>Name: <%= @pet.name %></p>
+<p>Description: <%= @pet.description %></p>
+<p>Approximate Age: <%= @pet.approx_age %></p>
+<p>Sex: <%= @pet.sex %></p>
+<p>Adoption Status: <%= @pet.adoption_status %></p>
