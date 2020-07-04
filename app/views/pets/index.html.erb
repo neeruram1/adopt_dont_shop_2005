@@ -2,7 +2,7 @@
 <ul id="pets-index">
   <% @pets.each do |pet| %>
     <%= image_tag(pet.image, method: :get) %>
-    <h3>Name: <%= pet.name %></h3>
+    <h3>Name: <%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h3>
     <p>Approximate Age: <%= pet.approx_age %></p>
     <p>Sex: <%= pet.sex %></p>
     <p>Shelter: <%= link_to "#{pet.shelter.name}", "/shelters/#{pet.shelter.id}" %></p>
