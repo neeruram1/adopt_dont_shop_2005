@@ -8,4 +8,12 @@ RSpec.describe 'Shelter Index page' do
     expect(page).to have_content(cozy_kitten.name)
     expect(page).to have_content(playful_pups.name)
   end
+
+  describe "When I visit /shelters I see a link to edit shelter info next to every shelter"
+    it "When I click the link I'm taken to a page to edit shelter's info" do
+      cozy_kitten = Shelter.create(name: "Cozy Kitten Animal Shelter")
+      visit '/shelters'
+      click_link "Edit #{cozy_kitten.name}'s Info"
+      expect(current_path).to eq("/shelters/#{cozy_kitten.id}/edit")
+    end
 end
