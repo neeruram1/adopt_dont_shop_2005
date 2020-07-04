@@ -1,4 +1,4 @@
-<h1><%= @shelter.name %> Adoptable Pets</h1>
+<h1><%= link_to "#{@shelter.name}", "/shelters/#{@shelter.id}" %> Adoptable Pets</h1>
 <ul id="shelter-pets-index">
   <% @pets.each do |pet| %>
     <%= image_tag(pet.image, method: :get) %>
