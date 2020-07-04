@@ -20,4 +20,25 @@ RSpec.describe "Shelter Pets index page" do
     expect(page).to_not have_content("Name: Milo")
     expect(page).to_not have_content("Approximate Age: #{dog1.approx_age}")
   end
+
+  describe "When I visit a shelter pets index page I see a link to edit pet info next to every pet"
+    it "When I click the link I'm taken to a page to edit pet's info" do
+      shelter = Shelter.create(name: "The Cozy Kitten Animal Shelter")
+      cat1 = Pet.create(name: 'Fred', approx_age: 2, sex: "Male", image: "", shelter_id: shelter.id )
+
+      visit "/shelters/#{shelter.id}/pets"
+      click_link "Edit #{cat1.name}'s Info"
+      expect(current_path).to eq("/pets/#{cat1.id}/edit")
+  end
+
+  describe "When I visit a shelter pets index page I see a link to delete pet next to every pet"
+    it "When I click the link the pet is deleted and I no longer see the page on the pet index page" do
+      shelter = Shelter.create(name: "The Cozy Kitten Animal Shelter")
+      cat1 = Pet.create(name: 'Fred', approx_age: 2, sex: "Male", image: "", shelter_id: shelter.id )
+
+      visit "shelters/#{shelter.id}/pets"
+      click_link "Delete #{cat1.name}"
+    expect(current_path).to eq("/pets")
+    expect(page).to_not have_content("Fred")
+  end
 end

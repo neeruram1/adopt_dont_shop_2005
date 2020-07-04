@@ -1,4 +1,4 @@
-<h1 class='page-title'>Pet List</h1>
+<h1 class='page-title'>All Pets</h1>
 <ul id="pets-index">
   <% @pets.each do |pet| %>
     <%= image_tag(pet.image, method: :get) %>
@@ -6,5 +6,7 @@
     <p>Approximate Age: <%= pet.approx_age %></p>
     <p>Sex: <%= pet.sex %></p>
     <p>Shelter: <%= pet.shelter.name %></p>
+    <p><%= link_to "Edit #{pet.name}'s Info", "/pets/#{pet.id}/edit" %></p>
+    <p><%= link_to "Delete #{pet.name}", "/pets/#{pet.id}", method: :delete %></p>
   <% end %>
 </ul>
