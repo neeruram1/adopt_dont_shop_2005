@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   get '/pets/:id', to: 'pets#show'
   get '/pets/:id/edit', to: 'pets#edit'
   patch '/pets/:id', to: 'pets#update'
+  delete '/pets/:id', to: 'pets#destroy'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
