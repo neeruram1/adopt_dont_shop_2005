@@ -2,9 +2,7 @@ RSpec.describe 'Shelter Index page' do
   it 'When I visit /shelters I see the names of all shelters' do
     cozy_kitten = Shelter.create(name: "Cozy Kitten Animal Shelter")
     playful_pups = Shelter.create(name: "Playful Puppies Animal Shelter")
-
     visit '/shelters'
-
     expect(page).to have_content(cozy_kitten.name)
     expect(page).to have_content(playful_pups.name)
   end
@@ -22,7 +20,22 @@ RSpec.describe 'Shelter Index page' do
       cozy_kitten = Shelter.create(name: "Cozy Kitten Animal Shelter")
       visit '/shelters'
       click_link "Delete #{cozy_kitten.name}"
-    expect(current_path).to eq("/shelters")
-    expect(page).to_not have_content("Cozy Kitten Animal Shelter")
+      expect(current_path).to eq("/shelters")
+      expect(page).to_not have_content("Cozy Kitten Animal Shelter")
+  end
+
+  it "Has a link to pets index page" do
+    cozy_kitten = Shelter.create(name: "Cozy Kitten Animal Shelter")
+    playful_pups = Shelter.create(name: "Playful Puppies Animal Shelter")
+    visit '/shelters'
+    expect(page).to have_link("All Pets")
+  end
+
+  it "Each shelter's name links to their show page" do
+    cozy_kitten = Shelter.create(name: "Cozy Kitten Animal Shelter")
+    playful_pups = Shelter.create(name: "Playful Puppies Animal Shelter")
+    visit '/shelters'
+    expect(page).to have_link("#{cozy_kitten.name}")
+    expect(page).to have_link("#{playful_pups.name}")
   end
 end

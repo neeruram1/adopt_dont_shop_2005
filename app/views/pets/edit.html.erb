@@ -1,4 +1,6 @@
 <h1>Edit Pet Information</h1>
+<%= link_to "All Pets", "/pets" %>
+<%= link_to "All Shelters", "/shelters" %>
 
 <%= form_tag "/pets/#{@pet.id}", method: :patch do %>
   <%= label_tag :image %>
