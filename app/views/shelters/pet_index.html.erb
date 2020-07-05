@@ -8,6 +8,7 @@
   <nav>
     <h3><%= link_to "ALL PETS", "/pets" %></h3>
     <h3><%= link_to "ALL SHELTERS", "/shelters" %></h3>
+    <h3>NUMBER OF ADOPTABLE PETS: <%= "#{@shelter.pets.count}" %></h3>
 </header>
 
 <section>

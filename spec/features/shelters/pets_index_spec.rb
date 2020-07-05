@@ -63,4 +63,13 @@ RSpec.describe "Shelter Pets index page" do
     visit "/shelters/#{cozy_kitten.id}/pets"
     expect(page).to have_link("#{cozy_kitten.name.upcase}")
   end
+
+  it "It shows the count of pets that belong to that shelter" do
+    cozy_kitten = Shelter.create(name: "Cozy Kitten Animal Shelter", address: "123 Maple Street", city: "Brooklyn", state: "NY", zip:12345)
+    cat1 = Pet.create(name: 'Fred', approx_age: 2, sex: "Male", image: "", shelter_id: cozy_kitten.id )
+    cat2 = Pet.create(name: 'Sophie', approx_age: 6, sex: "Female", image: "", shelter_id: cozy_kitten.id )
+    visit "/shelters/#{cozy_kitten.id}/pets"
+    expect(page).to have_content("NUMBER OF ADOPTABLE PETS:")
+    expect(page).to have_content("2")
+  end
 end
