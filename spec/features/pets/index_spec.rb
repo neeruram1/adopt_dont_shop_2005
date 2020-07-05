@@ -5,14 +5,14 @@ RSpec.describe 'as a visitor' do
       cat1 = Pet.create(name: 'Fred', approx_age: 2, sex: "Male", image: "", shelter_id: shelter.id )
       cat2 = Pet.create(name: 'Sophie', approx_age: 6, sex: "Female", image: "", shelter_id: shelter.id )
       visit '/pets'
-      expect(page).to have_content("Name: Fred")
-      expect(page).to have_content("Approximate Age: #{cat1.approx_age}")
-      expect(page).to have_content("Sex: #{cat1.sex}")
+      expect(page).to have_content("FRED")
+      expect(page).to have_content("#{cat1.approx_age}")
+      expect(page).to have_content("#{cat1.sex}")
       expect(page).to have_content(cat1.image)
-      expect(page).to have_content("The Cozy Kitten Animal Shelter")
-      expect(page).to have_content("Name: Sophie")
-      expect(page).to have_content("Approximate Age: #{cat2.approx_age}")
-      expect(page).to have_content("Sex: #{cat2.sex}")
+      expect(page).to have_content("THE COZY KITTEN ANIMAL SHELTER")
+      expect(page).to have_content("SOPHIE")
+      expect(page).to have_content("#{cat2.approx_age}")
+      expect(page).to have_content("#{cat2.sex}")
       expect(page).to have_content(cat2.image)
     end
   end
@@ -22,7 +22,7 @@ RSpec.describe 'as a visitor' do
       shelter = Shelter.create(name: "The Cozy Kitten Animal Shelter")
       cat1 = Pet.create(name: 'Fred', approx_age: 2, sex: "Male", image: "", shelter_id: shelter.id )
       visit '/pets'
-      click_link "Edit #{cat1.name}'s Info"
+      click_link "EDIT #{cat1.name.upcase}'S INFO"
       expect(current_path).to eq("/pets/#{cat1.id}/edit")
   end
 
@@ -31,7 +31,7 @@ RSpec.describe 'as a visitor' do
       shelter = Shelter.create(name: "The Cozy Kitten Animal Shelter")
       cat1 = Pet.create(name: 'Fred', approx_age: 2, sex: "Male", image: "", shelter_id: shelter.id )
       visit '/pets'
-      click_link "Delete #{cat1.name}"
+      click_link "DELETE #{cat1.name.upcase}"
     expect(current_path).to eq("/pets")
     expect(page).to_not have_content("Fred")
   end
@@ -41,7 +41,7 @@ RSpec.describe 'as a visitor' do
     cat1 = Pet.create(name: 'Fred', approx_age: 2, sex: "Male", image: "", shelter_id: shelter.id )
     cat2 = Pet.create(name: 'Sophie', approx_age: 6, sex: "Female", image: "", shelter_id: shelter.id )
     visit '/pets'
-    expect(page).to have_link("All Shelters")
+    expect(page).to have_link("ALL SHELTERS")
   end
 
   it "Each pet's name links to their show page" do
@@ -49,8 +49,8 @@ RSpec.describe 'as a visitor' do
     cat1 = Pet.create(name: 'Fred', approx_age: 2, sex: "Male", image: "", shelter_id: shelter.id )
     cat2 = Pet.create(name: 'Sophie', approx_age: 6, sex: "Female", image: "", shelter_id: shelter.id )
     visit '/pets'
-    expect(page).to have_link("#{cat1.name}")
-    expect(page).to have_link("#{cat2.name}")
+    expect(page).to have_link("#{cat1.name.upcase}")
+    expect(page).to have_link("#{cat2.name.upcase}")
   end
 
   it "Each shelter's name links to their show page" do
@@ -58,6 +58,6 @@ RSpec.describe 'as a visitor' do
     cat1 = Pet.create(name: 'Fred', approx_age: 2, sex: "Male", image: "", shelter_id: shelter.id )
     cat2 = Pet.create(name: 'Sophie', approx_age: 6, sex: "Female", image: "", shelter_id: shelter.id )
     visit '/pets'
-    expect(page).to have_link("#{shelter.name}")
+    expect(page).to have_link("#{shelter.name.upcase}")
   end
 end

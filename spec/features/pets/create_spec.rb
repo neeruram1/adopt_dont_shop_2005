@@ -2,12 +2,12 @@ RSpec.describe "Creating a new shelter pet" do
   it "Should create a new pet for a shelter " do
     cozy_kitten = Shelter.create(name: "Cozy Kitten Animal Shelter", address: "123 Maple Street", city: "Brooklyn", state: "NY", zip:12345)
     visit "/shelters/#{cozy_kitten.id}/pets"
-    name = "Alison"
+    name = "ALISON"
     image = ""
     description = "The cutest kitten!"
     approx_age = 2
     sex = "Female"
-    click_link "Create Pet"
+    click_link "ADD A NEW PET TO #{cozy_kitten.name.upcase}"
     expect(current_path).to eq("/shelters/#{cozy_kitten.id}/pets/new")
     fill_in :image, with: image
     fill_in :name, with: name
@@ -20,20 +20,19 @@ RSpec.describe "Creating a new shelter pet" do
     expect(page).to have_content(name)
     expect(page).to have_content(approx_age)
     expect(page).to have_content(sex)
-    expect(page).to have_content(sex)
   end
 
   it "Has a link to shelter index page" do
     cozy_kitten = Shelter.create(name: "Cozy Kitten Animal Shelter", address: "123 Maple Street", city: "Brooklyn", state: "NY", zip:12345)
     visit "/shelters/#{cozy_kitten.id}/pets"
-    click_link "Create Pet"
-    expect(page).to have_link("All Shelters")
+    click_link "ADD A NEW PET TO #{cozy_kitten.name.upcase}"
+    expect(page).to have_link("ALL SHELTERS")
   end
 
   it "Has a link to pet index page" do
     cozy_kitten = Shelter.create(name: "Cozy Kitten Animal Shelter", address: "123 Maple Street", city: "Brooklyn", state: "NY", zip:12345)
     visit "/shelters/#{cozy_kitten.id}/pets"
-    click_link "Create Pet"
-    expect(page).to have_link("All Pets")
+    click_link "ADD A NEW PET TO #{cozy_kitten.name.upcase}"
+    expect(page).to have_link("ALL PETS")
   end
 end

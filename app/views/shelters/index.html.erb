@@ -1,11 +1,24 @@
-<h1>All Shelters</h1>
-<%= link_to "All Pets", "/pets" %>
+<head>
+  <title>ALL SHELTERS</title>
+  <link rel="stylesheet" href="assets/stylesheets/main.css" title="text/css" />
+</head>
+<body>
+<header>
+<h1>ANIMAL SHELTERS INDEX</h1>
+<nav><h3><%= link_to "ALL PETS", "/pets" %></h3></nav>
+</header>
 
-<h2><% @shelters.each do |shelter|  %></h2>
-<h3><%= link_to "#{shelter.name}", "/shelters/#{shelter.id}" %></h3>
-<%= link_to "Edit #{shelter.name}'s Info", "/shelters/#{shelter.id}/edit" %>
-<p><%= link_to "Delete #{shelter.name}", "/shelters/#{shelter.id}", method: :delete %></p>
-<p>------</p>
+<section id="shelter_index">
+<ul id="shelter_index_list"><% @shelters.each do |shelter|  %>
+<li>
+  <h3><%= link_to "#{shelter.name.upcase}", "/shelters/#{shelter.id}" %></h3>
+  <h5><%= link_to "EDIT SHELTER", "/shelters/#{shelter.id}/edit" %>
+  <h5><%= link_to "DELETE SHELTER", "/shelters/#{shelter.id}", method: :delete %>
+</li>
 <% end %>
+</ul>
+</section>
+<img src="https://www.dogstrust.org.uk/our-centres/glasgow/centre-updates/news/2020/174714lrg_dtglasgowpups.jpg" alt="pets" id="main_page_image">
 
-<p><%= link_to "New Shelter", "/shelters/new" %></p>
+<footer><h3><%= link_to "CREATE A NEW SHELTER", "/shelters/new" %></h3></footer>
+</body>

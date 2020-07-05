@@ -3,7 +3,7 @@ RSpec.describe "Pet edit" do
     cozy_kitten = Shelter.create(name: "Cozy Kitten Animal Shelter")
     cat1 = Pet.create(name: 'Fred', approx_age: 2, sex: "Male", image: "", description: "Fred is the sweetest boy", adoption_status: "Adoptable", shelter_id: cozy_kitten.id)
     visit "/pets/#{cat1.id}"
-    click_link "Update Pet"
+    click_link "EDIT #{cat1.name.upcase}"
     expect(current_path).to eq("/pets/#{cat1.id}/edit")
     fill_in :image, with: ""
     fill_in :name, with: "Felicia"
@@ -19,15 +19,15 @@ RSpec.describe "Pet edit" do
     cozy_kitten = Shelter.create(name: "Cozy Kitten Animal Shelter")
     cat1 = Pet.create(name: 'Fred', approx_age: 2, sex: "Male", image: "", description: "Fred is the sweetest boy", adoption_status: "Adoptable", shelter_id: cozy_kitten.id)
     visit "/pets/#{cat1.id}"
-    click_link "Update Pet"
-    expect(page).to have_link("All Shelters")
+    click_link "EDIT #{cat1.name.upcase}"
+    expect(page).to have_link("ALL SHELTERS")
   end
 
   it "Has a link to pet index page" do
     cozy_kitten = Shelter.create(name: "Cozy Kitten Animal Shelter")
     cat1 = Pet.create(name: 'Fred', approx_age: 2, sex: "Male", image: "", description: "Fred is the sweetest boy", adoption_status: "Adoptable", shelter_id: cozy_kitten.id)
     visit "/pets/#{cat1.id}"
-    click_link "Update Pet"
-    expect(page).to have_link("All Pets")
+    click_link "EDIT #{cat1.name.upcase}"
+    expect(page).to have_link("ALL PETS")
   end
 end

@@ -6,16 +6,16 @@ RSpec.describe "Shelter Pets index page" do
     cat2 = Pet.create(name: 'Sophie', approx_age: 6, sex: "Female", image: "", shelter_id: cozy_kitten.id )
     dog1 = Pet.create(name: 'Milo', approx_age: 3, sex: "Male", image: "", shelter_id: puppy_playground.id)
     visit "/shelters/#{cozy_kitten.id}/pets"
-    expect(page).to have_content("Name: Fred")
-    expect(page).to have_content("Approximate Age: #{cat1.approx_age}")
-    expect(page).to have_content("Sex: #{cat1.sex}")
+    expect(page).to have_content("FRED")
+    expect(page).to have_content("#{cat1.approx_age}")
+    expect(page).to have_content("#{cat1.sex}")
     expect(page).to have_content(cat1.image)
-    expect(page).to have_content("Name: Sophie")
-    expect(page).to have_content("Approximate Age: #{cat2.approx_age}")
-    expect(page).to have_content("Sex: #{cat2.sex}")
+    expect(page).to have_content("SOPHIE")
+    expect(page).to have_content("#{cat2.approx_age}")
+    expect(page).to have_content("#{cat2.sex}")
     expect(page).to have_content(cat2.image)
-    expect(page).to_not have_content("Name: Milo")
-    expect(page).to_not have_content("Approximate Age: #{dog1.approx_age}")
+    expect(page).to_not have_content("MILO")
+    expect(page).to_not have_content("#{dog1.approx_age}")
   end
 
   describe "When I visit a shelter pets index page I see a link to edit pet info next to every pet"
@@ -23,7 +23,7 @@ RSpec.describe "Shelter Pets index page" do
       shelter = Shelter.create(name: "The Cozy Kitten Animal Shelter")
       cat1 = Pet.create(name: 'Fred', approx_age: 2, sex: "Male", image: "", shelter_id: shelter.id )
       visit "/shelters/#{shelter.id}/pets"
-      click_link "Edit #{cat1.name}'s Info"
+      click_link "EDIT #{cat1.name.upcase}'S INFO"
       expect(current_path).to eq("/pets/#{cat1.id}/edit")
   end
 
@@ -32,49 +32,35 @@ RSpec.describe "Shelter Pets index page" do
       shelter = Shelter.create(name: "The Cozy Kitten Animal Shelter")
       cat1 = Pet.create(name: 'Fred', approx_age: 2, sex: "Male", image: "", shelter_id: shelter.id )
       visit "shelters/#{shelter.id}/pets"
-      click_link "Delete #{cat1.name}"
+      click_link "DELETE #{cat1.name.upcase}"
     expect(current_path).to eq("/pets")
-    expect(page).to_not have_content("Fred")
+    expect(page).to_not have_content("FRED")
   end
 
   it "Has a link to pets index page" do
     cozy_kitten = Shelter.create(name: "Cozy Kitten Animal Shelter", address: "123 Maple Street", city: "Brooklyn", state: "NY", zip:12345)
-    puppy_playground = Shelter.create(name: "The Puppy Playground", address: "125 Maple Street", city: "Brooklyn", state: "NY", zip:12345)
-    cat1 = Pet.create(name: 'Fred', approx_age: 2, sex: "Male", image: "", shelter_id: cozy_kitten.id )
-    cat2 = Pet.create(name: 'Sophie', approx_age: 6, sex: "Female", image: "", shelter_id: cozy_kitten.id )
-    dog1 = Pet.create(name: 'Milo', approx_age: 3, sex: "Male", image: "", shelter_id: puppy_playground.id)
     visit "/shelters/#{cozy_kitten.id}/pets"
-    expect(page).to have_link("All Pets")
+    expect(page).to have_link("ALL PETS")
   end
 
   it "Has a link to shelters index page" do
     cozy_kitten = Shelter.create(name: "Cozy Kitten Animal Shelter", address: "123 Maple Street", city: "Brooklyn", state: "NY", zip:12345)
-    puppy_playground = Shelter.create(name: "The Puppy Playground", address: "125 Maple Street", city: "Brooklyn", state: "NY", zip:12345)
-    cat1 = Pet.create(name: 'Fred', approx_age: 2, sex: "Male", image: "", shelter_id: cozy_kitten.id )
-    cat2 = Pet.create(name: 'Sophie', approx_age: 6, sex: "Female", image: "", shelter_id: cozy_kitten.id )
-    dog1 = Pet.create(name: 'Milo', approx_age: 3, sex: "Male", image: "", shelter_id: puppy_playground.id)
     visit "/shelters/#{cozy_kitten.id}/pets"
-    expect(page).to have_link("All Shelters")
+    expect(page).to have_link("ALL SHELTERS")
   end
 
   it "Each pet's name links to their show page" do
     cozy_kitten = Shelter.create(name: "Cozy Kitten Animal Shelter", address: "123 Maple Street", city: "Brooklyn", state: "NY", zip:12345)
-    puppy_playground = Shelter.create(name: "The Puppy Playground", address: "125 Maple Street", city: "Brooklyn", state: "NY", zip:12345)
     cat1 = Pet.create(name: 'Fred', approx_age: 2, sex: "Male", image: "", shelter_id: cozy_kitten.id )
     cat2 = Pet.create(name: 'Sophie', approx_age: 6, sex: "Female", image: "", shelter_id: cozy_kitten.id )
-    dog1 = Pet.create(name: 'Milo', approx_age: 3, sex: "Male", image: "", shelter_id: puppy_playground.id)
     visit "/shelters/#{cozy_kitten.id}/pets"
-    expect(page).to have_link("#{cat1.name}")
-    expect(page).to have_link("#{cat2.name}")
+    expect(page).to have_link("#{cat1.name.upcase}")
+    expect(page).to have_link("#{cat2.name.upcase}")
   end
 
   it "Each shelter's name links to their show page" do
     cozy_kitten = Shelter.create(name: "Cozy Kitten Animal Shelter", address: "123 Maple Street", city: "Brooklyn", state: "NY", zip:12345)
-    puppy_playground = Shelter.create(name: "The Puppy Playground", address: "125 Maple Street", city: "Brooklyn", state: "NY", zip:12345)
-    cat1 = Pet.create(name: 'Fred', approx_age: 2, sex: "Male", image: "", shelter_id: cozy_kitten.id )
-    cat2 = Pet.create(name: 'Sophie', approx_age: 6, sex: "Female", image: "", shelter_id: cozy_kitten.id )
-    dog1 = Pet.create(name: 'Milo', approx_age: 3, sex: "Male", image: "", shelter_id: puppy_playground.id)
     visit "/shelters/#{cozy_kitten.id}/pets"
-    expect(page).to have_link("#{cozy_kitten.name}")
+    expect(page).to have_link("#{cozy_kitten.name.upcase}")
   end
 end
